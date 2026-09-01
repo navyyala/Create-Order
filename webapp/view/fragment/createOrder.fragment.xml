@@ -1,0 +1,182 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:cust="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.suite.ui.commons" xmlns="sap.m">
+	<l:VerticalLayout class="sapUiSmallMargin" width="100%">
+		<FlexBox alignItems="Start" id="headerForm1" justifyContent="SpaceBetween" width="100%">
+			<items>
+				<l:VerticalLayout class="" width="100%">
+					<l:layoutData>
+						<FlexItemData growFactor="2"/>
+					</l:layoutData>
+					<Text class="orderTitle" id="txt_PosteTechniqe"/>
+					<Text class="orderTitle" id="txt_Equipement"/>
+					<l:Grid class="sapUiSmallMarginTop" defaultSpan="L4 M6 S12" hSpacing="0">
+						<l:content>
+							<VBox class="sapUiSmallMarginEnd">
+								<layoutData>
+									<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L2 M3 S7"/>
+								</layoutData>
+								<Label text="{i18n>textLblPriority}"/>
+								<ComboBox id="cb_priority" items="{ path: '/PRIORITYSet' }" selectionChange="comboWRSelected">
+									<core:Item key="{Priok}" text="{Priok} {Priokx}"/>
+								</ComboBox>
+							</VBox>
+							<VBox class="sapUiSmallMarginEnd">
+								<layoutData>
+									<l:GridData span="L4 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblOrderType}"/>
+								<ComboBox id="cb_typeOrder" items="{ path: '/ORDERTYPESet' }" width="200%" selectionChange="onOrderSelected">
+									<core:Item key="{Auart}" text="{Auart} - {Txt}"/>
+								</ComboBox>
+							</VBox>
+							<!--<VBox class="sapUiSmallMarginEnd">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L4 M6 S12"/>-->
+							<!--	</layoutData>-->
+							<!--	<Label text="{i18n>textFragmentLblActivityType}"/>-->
+							<!--	<ComboBox id="cb_typeActivite" items="{ path: '/ACTTYPESet' }" selectionChange="comboWRSelected" selectedKey="Z10" width="200%">-->
+							<!--		<core:Item key="{ActType}" text="{ActDesc}"/>-->
+							<!--	</ComboBox>-->
+							<!--</VBox>-->
+							<VBox class="sapUiSmallMarginEnd">
+								<layoutData>
+									<l:GridData span="L3 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblWorkcenter}"/>
+								<!--<ComboBox id="cb_centreTravail" items="{ path: '/WORKCENTERSet' }" selectionChange="onSelectWorkCenter">-->
+								<!--	<core:Item key="{Arbpl}" text="{Arbpl}"/>-->
+								<!--</ComboBox>-->
+								<Select id="cb_centreTravail" items="{ path: '/WORKCENTERSet'}" forceSelection="false" change="onSelectWorkCenter">
+									<core:Item key="{Arbpl}" text="{Arbpl}"/>
+								</Select>
+							</VBox>
+							<!--<VBox class="sapUiSmallMarginEnd">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L3 M6 S12"/>-->
+							<!--	</layoutData>-->
+							<!--	<Label text="{i18n>textFragmentLblTransmitter}"/>-->
+							<!--	<ComboBox id="cb_emmeteur" items="{ path: '/REQUESTERSet' }">-->
+							<!--		<core:Item key="{Pernr}" text="{Ename}"/>-->
+							<!--	</ComboBox>-->
+							<!--</VBox>-->
+							<!-- 2eme ligne -->
+							
+							<!-- Start JII-3786 -->
+							<VBox class="sapUiSmallMarginEnd" id="vboxstartdateid" visible="false">
+								<layoutData>
+									<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>BreakdownStartDate}"/>
+								
+							<DatePicker displayFormat="short" editable="true" enabled="true" id="breakdownstartdateid" change="onDateChange"/>
+							
+							</VBox>
+							<VBox class="sapUiSmallMarginEnd" id="vboxstarttimeid" visible="false">
+								<layoutData>
+									<l:GridData span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>BreakdownStartTime}"/>
+								<TimePicker id="breakdownstarttimeid"  displayFormat="HH:mm:ss" width="100%" change="onTimeChange"/>
+							</VBox>
+							<!--  End of JII-3786 -->
+							
+							<!-- Start JII-4190 -->
+							<!--<VBox class="sapUiSmallMarginEnd" id="vboxfailuredateid" visible="false">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L6 M6 S12"/>-->
+							<!--	</layoutData>-->
+							<!--	<Label text="{i18n>NotificationFailureDate}" labelFor="notiffailuredateid"/>-->
+								
+							<!--<DatePicker displayFormat="short" editable="true" enabled="true" id="notiffailuredateid" required="true" change="onDateChange"/>-->
+							
+							<!--</VBox>-->
+							<!--<VBox class="sapUiSmallMarginEnd" id="vboxfailuretimeid" visible="false">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L6 M6 S12"/>-->
+							<!--	</layoutData>-->
+							<!--	<Label text="{i18n>NotificationFailureTime}" labelFor="notiffailuretimeid"/>-->
+							<!--	<TimePicker id="notiffailuretimeid"  displayFormat="HH:mm:ss" width="100%" required="true" change="onTimeChange"/>-->
+							<!--</VBox>-->
+							<!--  End of JII-4190 -->
+							
+							
+							<VBox class="sapUiSmallMarginEnd">
+								<layoutData>
+									<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblCatFunc}"/>
+								<ComboBox id="cb_CatFunc" items="{path : '/FUNCTIONSet'}" selectionChange="onFunctionCatChange" width="100%" enabled="false" >
+									<core:Item key="{Codegruppe}" text="{Codegruppe} - {Grouptext}"/>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<layoutData>
+									<l:GridData span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblFunCode}"/>
+								<ComboBox id="cb_FunCode" items="{path : '/FUNCTIONCODESet'}" enabled="false" width="100%">
+									<core:Item key="{Code}" text="{Code} - {Kurztext}"/>
+								</ComboBox>
+							</VBox>
+							<!--3�me ligne-->
+							<VBox class="sapUiSmallMarginEnd">
+								<layoutData>
+									<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblCatFail}"/>
+								<ComboBox id="cb_CatFail" items="{ path: '/WORKGROUPSet' }" selectionChange="onFailureCatChange"  width="100%" enabled="false">
+									<core:Item key="{Codegruppe}" text="{Codegruppe} - {Grouptext}"/>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<layoutData>
+									<l:GridData span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblFailCode}"/>
+								<ComboBox id="cb_FailCode" items="{ path: '/WORKTYPESet' }" enabled="false" width="100%">
+									<core:Item key="{Code}" text="{Code} - {Kurztext}"/>
+								</ComboBox>
+							</VBox>
+							<!--<VBox>-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L4 M3 S8"/>-->
+							<!--	</layoutData>-->
+							<!--	<Label text="{i18n>textFragmentLblIntervenant}"/>-->
+							<!--	<ComboBox id="cb_intervenant" items="{ path: '/OWNERSet' }">-->
+							<!--		<core:Item key="{Pernr}" text="{Ename}"/>-->
+							<!--	</ComboBox>-->
+							<!--</VBox>-->
+							<!--4�me ligne-->
+							<VBox class="sapUiSmallMarginEnd">
+								<layoutData>
+									<l:GridData linebreakL="true" linebreakM="true" linebreakS="true" span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblCatCause}"/>
+								<ComboBox id="cb_CatCause" items="{path : '/CAUSESet'}" selectionChange="onCauseCatChange" width="100%" enabled="false">
+									<core:Item key="{Codegruppe}" text="{Codegruppe} - {Grouptext}"/>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<layoutData>
+									<l:GridData span="L6 M6 S12"/>
+								</layoutData>
+								<Label text="{i18n>textFragmentLblCauseCode}"/>
+								<ComboBox id="cb_CauseCode" items="{path : '/CAUSECODESet'}" enabled="false" width="100%">
+									<core:Item key="{Code}" text="{Code} - {Kurztext}"/>
+								</ComboBox>
+							</VBox>
+						</l:content>
+					</l:Grid>
+				</l:VerticalLayout>
+				<Image class="sapUiMediumMarginBeginEnd" id="_imgPlan" press="imgPlanPressed" enabled="{createOrderViewModel>/imgVisible}" src=""
+					width="16rem"/>
+			</items>
+		</FlexBox>
+		<FlexBox alignItems="Start" id="headerForm2">
+			<items>
+				<Label class="sapUiSmallMargin" text="{i18n>textFragmentLblDescription}"/>
+				<TextArea id="headerDesc" width="600%" rows="6" change="textAreaChanged"/>
+			</items>
+		</FlexBox>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:ui="sap.suite.ui.commons" xmlns="sap.m">
+	<l:HorizontalLayout class="sapUiSmallMargin">
+		<Image class="logo" id="img_logo"/>
+	</l:HorizontalLayout>
+</core:FragmentDefinition>

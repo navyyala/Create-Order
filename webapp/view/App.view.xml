@@ -1,0 +1,3 @@
+<mvc:View controllerName="PO_CREATEORDER.controller.App" displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	<SplitApp id="idAppControl"/>
+</mvc:View>

@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:ui="sap.suite.ui.commons" xmlns:uico="sap.ui.commons" xmlns="sap.m">
+	<l:VerticalLayout width="100%">
+		<Panel class="canvasPanel">
+			<content>
+				<!-- Canvas has keyboard-inaccessible drawing; ARIA role added for screen readers -->
+				<html:canvas class="canvas" id="canvas" role="img" aria-label="Plan drawing canvas"></html:canvas>
+				<!--<uico:Image class="img_plan" id="img_plan" src="{Base64}" />-->
+			</content>
+		</Panel>
+		<Panel>
+			<FlexBox alignItems="Center" id="canvasButtons" justifyContent="Center">
+				<items>
+					<Button class="sapUiSmallMarginBegin" icon="sap-icon://eraser" id="btn_eraser" press="onEffacer"/>
+					<Button class="sapUiSmallMarginBegin" icon="sap-icon://edit" id="btn_pencil" press="onPencil"/>
+					<Button class="sapUiLargeMarginBegin" icon="sap-icon://notification" id="btn_circle" press="onCircle"/>
+					<Slider class="sapUiTinyMarginBegin" id="sliderCircle" value="30" width="10rem" liveChange="sliderCircleChanged" />		
+				</items>
+			</FlexBox>
+		</Panel>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,131 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:cust="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:ui="sap.suite.ui.commons" xmlns="sap.m">
+	<IconTabBar id="itbMain" selectedKey="itbSelKey">
+		<items>
+			<!--Tab items-->
+			<IconTabFilter icon="sap-icon://activity-individual" id="filterItems" showAll="false" text="{i18n>textIconTabActivity}">
+				<content>
+					<Toolbar class="itemsToolbar" id="otbSubheader">
+						<ToolbarSpacer/>
+						<Button press="onAddEditItem" text="{i18n>textBtnAddOperation}" type="Transparent"/>
+					</Toolbar>
+					<Table id="tableItems" inset="false" noDataText="{i18n>fragmentTableNoData}">
+						<columns>
+							<Column id="colPosteNo">
+								<header>
+									<Label id="lblPosteNo" text="{i18n>textFragmentLblPosteNo}"/>
+								</header>
+							</Column>
+							<Column id="colPosteWorkspace">
+								<header>
+									<Label id="lblPosteWorkspace" text="{i18n>textFragmentLblWorkcenter}"/>
+								</header>
+							</Column>
+							<Column id="colPosteIntervenant">
+								<header>
+									<Label id="lblPosteIntervenant" text="{i18n>textFragmentLblIntervenant}"/>
+								</header>
+							</Column>
+							<Column id="colPosteDescription">
+								<header>
+									<Label id="lblPosteDescription" text="{i18n>textFragmentLblPosteDescription}"/>
+								</header>
+							</Column>
+							<Column id="colPosteEdit" width="5rem">
+								<header>
+									<Label id="lblPosteEdit" text=""/>
+								</header>
+							</Column>
+							<Column id="colPosteDelete" width="5rem">
+								<header>
+									<Label id="lblPosteDelete" text=""/>
+								</header>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem id="itemsTemplate">
+								<cells>
+									<Text id="txtPosteNo" text="{Vornr}"/>
+									<Text id="txtWorkcenter" text="{Gewrk}"/>
+									<Text id="txtPosteIntervenant" text="{Ename}"/>
+									<Text id="txtPosteDescription" text="{Description}"/>
+									<Button cust:itemDescription="{Description}" cust:itemIntervenant="{Pernr}" cust:itemNo="{Vornr}" icon="sap-icon://edit"
+										press="onAddEditItem"/>
+									<Button cust:itemNo="{Vornr}" icon="sap-icon://delete" press="onDeleteItem"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabFilter>
+			<IconTabSeparator icon=""/>
+			<!--Tab Photo Attachments-->
+			<IconTabFilter icon="sap-icon://attachment" iconColor="Default" id="filterAttachment" text="{i18n>textIconTabAttachments}">
+				<content>
+					<UploadCollection beforeUploadStarts="onBeforeUploadStarts" change="onChange" fileDeleted="onFileDeleted" id="Uploads" items="{path: '/ATTACHSet', filters:[]}"
+						noDataText="{i18n>attachmentNoDataText}" numberOfAttachmentsText="{i18n>textIconNumberOfAttachments}" uploadComplete="onUploadComplete"
+						uploadUrl="/sap/opu/odata/sap/ZGPM_CREATE_ORDER_SRV/ATTACHSet">
+						<items>
+							<UploadCollectionItem documentId="{Doknr}" enableDelete="{path: 'Tplnr', formatter: '.isNull'}" enableEdit="false" fileName="{Dktxt}"
+								mimeType="{Mimetype}" url="/sap/opu/odata/sap/ZGPM_CREATE_ORDER_SRV/ATTACHSet(Dktxt='{Dktxt}',Tplnr='{Tplnr}',Aufnr='{Aufnr}',Equnr='{Equnr}')/$value"
+								visibleDelete="{path: 'Tplnr', formatter: '.isNull'}" visibleEdit="false"/>
+						</items>
+					</UploadCollection>
+				</content>
+			</IconTabFilter>
+			<IconTabSeparator icon=""/>
+			<!--Tab open orders-->
+			<IconTabFilter icon="sap-icon://my-sales-order" iconColor="Default" id="filterOpenOrders" text="{i18n>textIconTabOpenOrder}">
+				<content>
+					<Table id="tableOrders" items="{/ORDERLISTSet}" noDataText="{18n>fragmentTableNoOrder}">
+						<columns>
+							<Column id="colOrderNo">
+								<header>
+									<Label id="lblOrderNo" text="{i18n>textFragmentLblOrderNo}"/>
+								</header>
+							</Column>
+							<Column id="colOrderIntervenant">
+								<header>
+									<Label id="lblOrderIntervenant" text="{i18n>textFragmentLblIntervenant}"/>
+								</header>
+							</Column>
+							<Column id="colOrderDescription">
+								<header>
+									<Label id="lblOrderDescription" text="{i18n>textFragmentLblOrderDescription}"/>
+								</header>
+							</Column>
+							<!--<Column id="colOrderTypeTravaux">-->
+							<!--	<header>-->
+							<!--		<Label id="lblOrderTypeTravaux" text="{i18n>textFragmentLblOrderWorkType}"/>-->
+							<!--	</header>-->
+							<!--</Column>-->
+							<Column id="colOrderDateCreation">
+								<header>
+									<Label id="lblOrderDateCreation" text="{i18n>textFragmentLblCreationDate}"/>
+								</header>
+							</Column>
+							<Column id="colOrderStatus">
+								<header>
+									<Label id="lblOrderStatus" text="{i18n>textFragmentLblWorkcenter}"/>
+								</header>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text id="cellOrderNo" text="{Aufnr}"/>
+									<Text id="cellOrderIntervenant" text="{TechName}"/>
+									<Text id="cellOrderDescription" text="{Ktext}"/>
+									<!--<Text id="cellOrderTypeTravaux" text="{Kurztext}"/>-->
+									<DatePicker dateValue="{Date}" displayFormat="dd.MM.yyyy" editable="false" enabled="true" id="cellOrderDate"/>
+									<!--<Text id="cellOrderStatus" text="{Ilart}"/>-->
+									<Text id="cellWorkCenter" text="{Gewrk}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

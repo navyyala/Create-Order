@@ -1,0 +1,47 @@
+<mvc:View controllerName="PO_CREATEORDER.controller.Master" xmlns:core="sap.ui.core"
+	xmlns:cust="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page id="masterPage" title="{i18n>masterTitle}" navButtonPress="onNavBack" showNavButton="true">
+		<subHeader id="masterSubHeader">
+			<Bar id="searchBar">
+				<contentLeft>
+					<!--<Button icon="sap-icon://home" id="btn_home" press="onHome"/>-->
+					<Button icon="sap-icon://refresh" id="btn_refresh" press="onRefreshList" tooltip="{i18n>masterRefreshTooltip}"
+					ariaLabel="{i18n>masterRefreshTooltip}"/>
+				</contentLeft>
+				<contentMiddle>
+					<SearchField id="searchField" placeholder="{i18n>searchText}" search="onSearch"
+						ariaLabelledBy="masterSearchLabel"
+						tooltip="{i18n>masterSearchTooltip}" width="100%"/>
+				</contentMiddle>
+			</Bar>
+		</subHeader>
+		<content>
+			<!--Navigation path list-->
+			<List class="listNav" id="listNav" items="{path: '/FUNCPARENTSet'}" mode="{device&gt;/listMode}" noDataText=" " select="onSelectNav">
+				<items id="navList">
+					<ObjectListItem counter="0" cust:name="{Name}" cust:level="{Level}" cust:base64="{Base64}" id="navListItem" markFavorite="false"
+						markFlagged="false" number="" numberUnit="" press="onSelectNav" showMarkers="false" title="{Description}" type="{device&gt;/listItemType}"></ObjectListItem>
+				</items>
+			</List>
+			<!--Navigation main list-->
+			<List id="list" mode="{device&gt;/listMode}" items="{path: '/FUNCLEVELSet'}" noDataText="{i18n>masterListNoDataText}" select="onSelect">
+				<items id="masterList">
+					<ObjectListItem counter="0" cust:lowerLevel="{LowerLevel}" cust:orderAllowed="{OrderAllowed}" cust:objType="{ObjType}" cust:color="{Color}"
+						id="mainListItem" cust:base64="{Base64}" markFavorite="false" markFlagged="false" number="" numberUnit="" press="onSelect"
+						showMarkers="false" title="{Description}" type="{device&gt;/listItemType}"></ObjectListItem>
+				</items>
+			</List>
+		</content>
+		<footer id="masterFooter">
+			<Toolbar id="masterToolbar">
+				<content>
+					<!--<Button id="btn_createOrder" type="Emphasized" press="onCreateOrderSample" text="{i18n>libelleBoutonCreer}"/>-->
+					<!--<footerbar:SettingsButton icon="sap-icon://action-settings" id="settingsButton" tooltip="Help"/>-->
+					<Button id="btn_scan" text="Scan" press="onScanCreate" icon="sap-icon://bar-code" enabled="true"
+					ariaLabel="{i18n>masterScanTooltip}" tooltip="{i18n>masterScanTooltip}"/>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

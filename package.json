@@ -1,0 +1,25 @@
+{
+  "name": "po-createorder",
+  "version": "1.0.0",
+  "description": "CMMS Work Order Creation - PM Module (ZGPM_ORDER_CRE)",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve --config ui5.yaml --open index.html",
+    "start-local": "ui5 serve --config ui5-local.yaml --open index.html",
+    "start-gwq": "ui5 serve --config ui5-gwq.yaml --open index.html",
+    "build": "ui5 build --config ui5.yaml",
+    "build:prod": "ui5 build --config ui5.yaml --all",
+    "deploy": "npm run build && fiori deploy --config ui5-deploy.yaml --yes",
+    "lint": "ui5lint"
+  },
+  "devDependencies": {
+    "@sap/ux-ui5-tooling": "^1.30.0",
+    "@ui5/cli": "^3.11.13",
+    "@ui5/linter": "^1"
+  },
+  "ui5": {
+    "dependencies": [
+      "@sap/ux-ui5-tooling"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiori Launchpad Sandbox – PO_CREATEORDER</title>
+
+    <script>
+        window["sap-ushell-config"] = {
+            defaultRenderer: "fiori2",
+            renderers: {
+                fiori2: {
+                    componentData: {
+                        config: {
+                            enableSearch: false
+                        }
+                    }
+                }
+            },
+            // top-level applications map is the sandbox adapter's tile/nav source
+            applications: {
+                "ZPMSEMORDERCREATE-DISPLAY_G": {
+                    title: "Create Work Order",
+                    description: "CMMS PM Order",
+                    icon: "sap-icon://approvals",
+                    additionalInformation: "SAPUI5.Component=PO_CREATEORDER",
+                    applicationType: "URL",
+                    url: "/",
+                    navigationMode: "embedded"
+                }
+            }
+        };
+    </script>
+
+    <!-- Bootstrap SAPUI5 with the FLP sandbox shell -->
+    <script id="sap-ushell-bootstrap"
+        src="/test-resources/sap/ushell/bootstrap/sandbox.js">
+    </script>
+
+    <script
+        src="/resources/sap-ui-core.js"
+        data-sap-ui-libs="sap.m,sap.ushell,sap.ui.layout,sap.ui.core"
+        data-sap-ui-theme="sap_fiori_3"
+        data-sap-ui-bindingSyntax="complex"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="allow"
+        data-sap-ui-resourceroots='{"PO_CREATEORDER": "/"}'>
+    </script>
+
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            // createRenderer is synchronous in SAPUI5 1.71
+            sap.ushell.Container.createRenderer("fiori2").placeAt("content");
+        });
+    </script>
+</head>
+<body class="sapUiBody">
+    <div id="content" style="height: 100%;"></div>
+</body>
+</html>

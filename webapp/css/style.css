@@ -1,0 +1,132 @@
+.errorRow {
+	background-color: rgba(253, 212, 212, 0.8) !important;
+}
+.spacerTop {
+    margin-top: 2rem;
+}
+.sap-tablet .sapMDialog,
+.sap-desktop .sapMDialog {
+    min-width: 18rem;
+}
+.sapMMessageDialog {
+    width: 18rem;
+}
+
+.sapMSplitContainerMasterBtn {
+	visibility:hidden;
+}
+
+.logo {
+	position:absolute;
+    top:0;
+    bottom:0;
+    left: 0;  
+    right: 0;
+    margin:auto;
+    max-width:90%;
+	max-height:90%;
+}
+
+.img_plan {
+	margin:auto;
+    max-width:80%;
+	max-height:80%;
+	display: none;
+}
+
+.orderTitle {
+	font-size: 150%;
+}
+
+.canvasPanel{
+   width: 100%;
+   text-align:center;
+}
+.canvas {
+	width : 80%;
+	touch-action: none;
+}
+.listNav * {
+    font-size: 0.7rem !important;
+    color: blue !important;
+    line-height: 0.6rem !important;
+    height: auto !important;
+}
+
+ .itemsToolbar{
+ 	height: 2rem;
+ }
+
+.C0101DF {
+	background-color: #0101DF !important;
+}
+.C2EFEF7 {
+	background-color: #2EFEF7 !important;
+}
+.CFFBF00 {
+	background-color: #FFBF00 !important;
+}
+.CF0F8FF {
+	background-color: #F0F8FF !important;
+}
+.C7FFFD4 {
+	background-color: #7FFFD4 !important;
+}
+.C6495ED {
+	background-color: #6495ED !important;
+}
+.CA9A9A9 {
+	background-color: #A9A9A9 !important;
+}
+.C483D8B {
+	background-color: #483D8B !important;
+}
+.C1E90FF {
+	background-color: #1E90FF !important;
+}
+.C5F9EA0 {
+	background-color: #5F9EA0 !important;
+}
+.C7FFF00 {
+	background-color: #7FFF00 !important;
+}
+.C9932CC {
+	background-color: #9932CC !important;
+}
+.C8B0000 {
+	background-color: #8B0000 !important;
+}
+.CDCDCDC {
+	background-color: #DCDCDC !important;
+}
+.C808080 {
+	background-color: #808080 !important;
+}
+.C87CEFA {
+	background-color: #87CEFA !important;
+}
+.C778899 {
+	background-color: #778899 !important;
+}
+.CB0C4DE {
+	background-color: #B0C4DE !important;
+}
+.CFFA500 {
+	background-color: #FFA500 !important;
+}
+.CDDA0DD {
+	background-color: #DDA0DD !important;
+}
+.CFFFF00 {
+	background-color: #FFFF00 !important;
+}
+.C9ACD32 {
+	background-color: #9ACD32 !important;
+}
+.CFF0000 {
+	background-color: #FF0000 !important;
+}
+
+.sapMIBar-CTX .sapMTitle {
+    color: #333333 !important;
+}

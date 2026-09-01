@@ -1,0 +1,10 @@
+<mvc:View controllerName="PO_CREATEORDER.controller.NotFound" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page enableScrolling="false" id="notFoundPage" title="{i18n>notFoundTitle}">
+		<content>
+			<Text class="spacerTop" id="notFoundText" maxLines="0" text="{i18n>notFoundText}" textAlign="Center" width="100%"></Text>
+		</content>
+		<footer id="notFoundFooter">
+			<Toolbar id="notFoundToolbar"></Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

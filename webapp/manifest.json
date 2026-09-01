@@ -1,0 +1,152 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "PO_CREATEORDER",
+    "type": "application",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "ach": "PM",
+    "resources": "resources.json",
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZGPM_CREATE_ORDER_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "model/metadata.xml",
+          "annotations": []
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "ZPMSEMORDERCREATE-DISPLAY_G": {
+          "semanticObject": "ZPMSEMORDERCREATE",
+          "action": "DISPLAY_G",
+          "title": "{{appTitle}}",
+          "icon": "sap-icon://approvals",
+          "info": "",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://approvals"
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "supportedThemes": [
+      "sap_fiori_3",
+      "sap_fiori_3_dark",
+      "sap_high_contrast_black",
+      "sap_high_contrast_white"
+    ]
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "PO_CREATEORDER.view.App",
+      "type": "XML",
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.71.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.layout": {},
+        "sap.ui.core": {},
+        "sap.ndc": {
+          "lazy": true
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "handleValidation": true,
+    "models": {
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "useBatch": true,
+          "refreshAfterChange": false,
+          "defaultCountMode": "None"
+        }
+      },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "PO_CREATEORDER.i18n.messageBundle",
+          "supportedLocales": ["", "en", "de", "fr", "es", "pt"],
+          "fallbackLocale": ""
+        }
+      },
+      "device": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "routing": {
+      "config": {
+        "routerClass": "PO_CREATEORDER.MyRouter",
+        "viewType": "XML",
+        "viewPath": "PO_CREATEORDER.view",
+        "controlId": "idAppControl",
+        "controlAggregation": "detailPages",
+        "bypassed": {
+          "target": ["master", "notFound"]
+        }
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "main",
+          "target": ["master", "detail"]
+        },
+        {
+          "pattern": "{entity}/:tab:",
+          "name": "detail",
+          "target": ["master", "detail"]
+        }
+      ],
+      "targets": {
+        "master": {
+          "viewName": "Master",
+          "controlAggregation": "masterPages",
+          "controlId": "idAppControl",
+          "viewLevel": 0
+        },
+        "detail": {
+          "viewName": "Detail",
+          "controlAggregation": "detailPages",
+          "viewLevel": 1
+        },
+        "notFound": {
+          "viewName": "NotFound",
+          "controlAggregation": "detailPages",
+          "viewLevel": 1,
+          "transition": "show"
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

@@ -1,0 +1,36 @@
+specVersion: "3.0"
+metadata:
+  name: po-createorder
+type: application
+framework:
+  name: SAPUI5
+  version: "1.71.84"
+  libraries:
+    - name: sap.m
+    - name: sap.ui.core
+    - name: sap.ui.layout
+    - name: sap.ushell
+    - name: sap.ndc
+    - name: themelib_sap_fiori_3
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localIndex.html
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateVersionInfo
+      configuration:
+        target:
+          # TODO: Confirm ABAP system URL and client with Basis team
+          url: http://sdctwd0024.ad.ponet:8000
+          client: "100"
+          auth: basic
+        app:
+          name: ZGPM_ORDER_CRE
+          description: CMMS Work Order Creation
+          package: ZPM
+          transport: ""
+        exclude:
+          - /test/**
+          - /localIndex.html

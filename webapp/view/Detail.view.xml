@@ -1,0 +1,26 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" controllerName="PO_CREATEORDER.controller.Detail">
+	<Page id="detailPage" navButtonPress="onNavBack" showNavButton="false" title="{i18n>detailTitle}">
+		<content>
+		</content>
+		<footer>
+			<Toolbar id="detailToolbar">
+				<content>
+					<ToolbarSpacer id="toolbarSpacer"/>
+					<!--Save order button-->
+					<Button id="btn_saveOrder" press="onSaveOrder" text="{i18n>libelleBoutonSauvegarder}"
+					ariaLabel="{i18n>libelleBoutonSauvegarder}" />
+					<!--Cancel create order button-->
+					<Button id="btn_cancel" press="onCancelOrder" text="{i18n>libelleBoutonAnnuler}" />
+					<!--Save photo after drawing button-->
+					<Button id="btn_saveCanvas" press="onSaveCanvas" text="{i18n>libelleBoutonSauvegarder}" />
+					<!--Cancel photo drawing and return back to create order button-->
+					<Button id="btn_cancelCanvas" press="onCancelCanvas" text="{i18n>libelleBoutonAnnuler}" />
+					<!--Go to create order page button-->
+					<Button id="btn_createOrder" type="Emphasized" press="onCreateOrder" text="{i18n>libelleBoutonCreer}" />
+					<!--Take photo button-->
+					<Button id="btn_takePhoto" press="onTakePhoto" text="{i18n>libelleBoutonPrendrePhoto}"/>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

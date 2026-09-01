@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:ui="sap.suite.ui.commons" xmlns:form="sap.ui.layout.form" xmlns="sap.m">
+	<Dialog id="addEditItemDialog" title="{i18n>dialogAddOperation}">
+		<content>
+			<form:SimpleForm editable="false" id="itemForm" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label class="" text="{i18n>textFragmentLblWorkcenter}"/>
+					<ComboBox id="cb_workcenter" items="{ path: '/WORKCENTERSet' }" selectionChange="onFrgWorkCenterChange">
+						<core:Item key="{Arbpl}" text="{Arbpl}"/>
+					</ComboBox>
+						<!--<Select id="cb_workcenter" items="{ path: '/WORKCENTERSet'}" forceSelection="false" change="onFrgWorkCenterChang">
+									<core:Item key="{Arbpl}" text="{Arbpl}"/>
+								</Select>-->
+					<Label class="" text="{i18n>itemFormIntervenant}"/>
+					<ComboBox id="cb_intervenant" items="{ path: '/OWNERSet' }" enabled="false">
+						<core:Item key="{Pernr}" text="{Ename}"/>
+					</ComboBox>
+					<Label text="{i18n>textLblDescription}"/>
+					<TextArea id="itemDesc" rows="6" text="{myData>myText}"/>
+				</form:content>
+			</form:SimpleForm>
+		</content>
+		<beginButton>
+			<Button press="saveItem" text="{i18n>textBtnSave}"/>
+		</beginButton>
+		<endButton>
+			<Button press="closeDialog" text="{i18n>textBtnCancel}"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

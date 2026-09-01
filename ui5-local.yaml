@@ -1,0 +1,28 @@
+specVersion: "3.0"
+metadata:
+  name: po-createorder
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path: /resources
+          url: https://sapui5.hana.ondemand.com
+          version: "1.71.84"
+        backend:
+          - path: /sap/opu/odata
+            url: http://sdctwd0024.ad.ponet:8000
+            client: "100"
+            destination: GWD
+          - path: /sap/bc/ui5_ui5
+            url: http://sdctwd0024.ad.ponet:8000
+            client: "100"
+            destination: GWD
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
