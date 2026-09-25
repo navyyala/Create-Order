@@ -210,6 +210,15 @@
             var oPlan = Fragment.byId(this._frgIdCreateOrder, "_imgPlan");
             Fragment.byId(this._frgIdCreateOrder, "headerDesc").setValue("");
 
+            // Applied unconditionally -- must not depend on the plan image control being found
+            var aAttachFilters = [];
+            if (sPostName) { aAttachFilters.push(new Filter("Tplnr", FilterOperator.Contains, sPostName)); }
+            if (sEquipeName) { aAttachFilters.push(new Filter("Equnr", FilterOperator.Contains, sEquipeName)); }
+            aAttachFilters.push(new Filter("Dokar", FilterOperator.Contains, "ZDT"));
+            if (oUploads && oUploads.getBinding("items")) {
+                oUploads.getBinding("items").filter(aAttachFilters);
+            }
+
             if (oPlan) {
                 var oCanvas = document.getElementById(this._frgIdCanvas + "--canvas");
                 if (oCanvas) {
@@ -221,13 +230,6 @@
                             Base64: this._dataURL.split(",")[1]
                         }, { success: function () {}, error: function () {} });
                     }
-                }
-                var aFilters = [];
-                if (sPostName) { aFilters.push(new Filter("Tplnr", FilterOperator.Contains, sPostName)); }
-                if (sEquipeName) { aFilters.push(new Filter("Equnr", FilterOperator.Contains, sEquipeName)); }
-                aFilters.push(new Filter("Dokar", FilterOperator.Contains, "ZDT"));
-                if (oUploads && oUploads.getBinding("items")) {
-                    oUploads.getBinding("items").filter(aFilters);
                 }
 
                 var oWorkCenter = Fragment.byId(this._frgIdCreateOrder, "cb_centreTravail");
@@ -1014,13 +1016,13 @@
             this.refreshTableItems();
         },
 
-        /** Shows an error toast if the upload failed and refreshes the model. */
+        /** Shows an error toast if the upload failed and refreshes attachment data only. */
         onUploadComplete: function (oEvent) {
             var iStatus = oEvent.getParameter("status");
             if (iStatus !== 200 && iStatus !== 201) {
                 MessageToast.show(this._oResourceBundle.getText("fileTypeNotSupported"));
             }
-            this.getView().getModel().refresh(true);
+            this._refreshAttachSet();
         },
 
         /** Placeholder for upload pre-processing — overridden by UploadCollection events. */
@@ -1040,9 +1042,17 @@
             var sDocId = oEvent.getParameter("documentId");
             this.getView().getModel().remove(
                 "/ATTACHSet(Aufnr='',Tplnr='',Equnr='',Doknr='" + sDocId + "')",
-                { success: function () {}, error: function () {} }
+                { success: this._refreshAttachSet.bind(this), error: function () {} }
             );
-            this.getView().getModel().refresh(true);
+        },
+
+        /** Refreshes only the attachment collection binding. */
+        _refreshAttachSet: function () {
+            var oUploads = Fragment.byId(this._frgIdCreateOrder, "Uploads");
+            var oBinding = oUploads && oUploads.getBinding("items");
+            if (oBinding) {
+                oBinding.refresh(true);
+            }
         },
 
         /** Syncs the first 40 characters of the description to the first operation item. */
@@ -1059,6 +1069,11 @@
             this.getOwnerComponent().getModel().refreshSecurityToken(function () {
                 oSelf._token = oSelf.getOwnerComponent().getModel().getSecurityToken();
             });
+        },
+
+        /** Returns true when the value is empty, preserving the original formatter contract used by the attachment list. */
+        isNull: function (value) {
+            return !value || String(value).length === 0;
         },
 
         /** Returns the component-level shared application state model. */

@@ -77,7 +77,8 @@
 			<!--Tab open orders-->
 			<IconTabFilter icon="sap-icon://my-sales-order" iconColor="Default" id="filterOpenOrders" text="{i18n>textIconTabOpenOrder}">
 				<content>
-					<Table id="tableOrders" items="{/ORDERLISTSet}" noDataText="{18n>fragmentTableNoOrder}">
+					<!-- separate groupId keeps this slow read out of the default $batch used by attachments/catalogues -->
+					<Table id="tableOrders" items="{path: '/ORDERLISTSet', parameters: {groupId: 'openOrders'}}" noDataText="{18n>fragmentTableNoOrder}">
 						<columns>
 							<Column id="colOrderNo">
 								<header>
