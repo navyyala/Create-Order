@@ -1018,7 +1018,7 @@
 
         /** Shows an error toast if the upload failed and refreshes attachment data only. */
         onUploadComplete: function (oEvent) {
-            var iStatus = oEvent.getParameter("status");
+            var iStatus = oEvent.getParameters().getParameter("status");
             if (iStatus !== 200 && iStatus !== 201) {
                 MessageToast.show(this._oResourceBundle.getText("fileTypeNotSupported"));
             }
